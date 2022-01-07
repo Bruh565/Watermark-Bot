@@ -38,7 +38,8 @@ async def vidmark(the_media, message, working_dir, watermark_path, output_vid, t
         the_media,
         "-i",
         watermark_path,
-        "-filter_complex",
+        "-vf"
+        "drawtext=fontsize=(h/15):fontfile=/Windows/Fonts/arial.ttf: text='@WoodLinks':x=if(eq(mod(t\,5)\,0)\,rand(0\,(W-tw))\,x): y=if(eq(mod(t\,5)\,0)\,rand(0\,(H-th))\,y)"
         f"[1][0]scale2ref=w='iw*{size}/100':h='ow/mdar'[wm][vid];[vid][wm]overlay={position}",
         "-c:v",
         "h264",
